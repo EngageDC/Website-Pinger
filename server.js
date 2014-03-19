@@ -4,6 +4,9 @@ var spawn = require('child_process').spawn,
 	fs = require('fs'),
 	SerialPort = require('serialport').SerialPort;
 
+var DEBUG_LEDSIGN = false;
+var DEBUG_SAY = false;
+
 var hosts = {
 	list: [],
 	sitesDown: [],
@@ -108,20 +111,29 @@ var sign = {
 	},
 
 	stop: function(turnOn) {
-		console.log('Turning stop sign ' + (turnOn ? 'on' : 'off'));
+		if (DEBUG_LEDSIGN) {
+			console.log('Turning stop sign ' + (turnOn ? 'on' : 'off'));
+		}
+
 		serialPort.write((turnOn ? 1 : 2) + "\n");
 		sign.stopStatus = turnOn;
 	},
 
 	walk: function(turnOn) {
-		console.log('Turning walk sign ' + (turnOn ? 'on' : 'off'));
+		if (DEBUG_LEDSIGN) {
+			console.log('Turning walk sign ' + (turnOn ? 'on' : 'off'));
+		}
+
 		serialPort.write((turnOn ? 3 : 4) + "\n");
 		sign.walkStatus = turnOn;
 	},
 };
 
 function say(str) {
-	console.log('Say: ' + str);
+	if (DEBUG_SAY) {
+		console.log('Say: ' + str);
+	}
+	
 	spawn('say', ['-v', 'Zarvox', '-r', 170, str]);
 }
 
