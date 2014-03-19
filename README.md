@@ -9,7 +9,7 @@ The app will alert using two communication channels:
 
 We use the serial this to power a walk/stop LED sign through a relay hooked up to a microcontroller. The sign will blink "stop" when any server is down and lighten up "walk" when all websites are up.
 
-[The walk/stop sign in action](https://raw.github.com/EngageDC/Website-Pinger/master/screenshots/walksign.gif)
+![The walk/stop sign in action](https://raw.github.com/EngageDC/Website-Pinger/master/screenshots/walksign.gif)
 
 ## Using
 
