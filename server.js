@@ -133,7 +133,7 @@ function say(str) {
 	if (DEBUG_SAY) {
 		console.log('Say: ' + str);
 	}
-	
+
 	spawn('say', ['-v', 'Zarvox', '-r', 170, str]);
 }
 
@@ -141,7 +141,10 @@ function say(str) {
 var serialPort = new SerialPort('/dev/tty.usbserial-A800fcje', {
 	baudrate: 9600,
 }).on('open', function () {
-	hosts.checkIfUp();
+	setTimeout(function () {
+		sign.walk(true);
+		hosts.checkIfUp();
+	}, 2000); // Give it a little bit of time to get ready
 });
 hosts.checkIfUp();
 
